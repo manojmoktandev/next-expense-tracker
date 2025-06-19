@@ -18,7 +18,7 @@ const  Table:React.FC<IProps> = ({data=[],columns})=> {
         columns,
         getCoreRowModel: getCoreRowModel(),
     })
-    console.log('data is data',data)
+    
     return (
         <div className="flex flex-col md:flex-row justify-between items-center p-2 overflow-x-auto">
             <table className='min-w-full divide-y divide-gray-200'>
