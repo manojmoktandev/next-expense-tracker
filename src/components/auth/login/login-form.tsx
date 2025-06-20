@@ -28,7 +28,6 @@ const LoginForm = () => {
     const  {isPending,mutate}  = useMutation({
         mutationFn:login,
         onSuccess:(response)=>{
-            console.log('on- sucess',response)
             toast.success(response.message ?? 'Login Success!!')
             localStorage.setItem('user',JSON.stringify(response.data));
             updateUser(response.data);

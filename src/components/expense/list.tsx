@@ -54,7 +54,6 @@ const ExpensesList = () => {
     }, [mutate])
 
     const onEdit = useCallback(() => {
-        console.log('Edit button clicked')
     }, [])
 
     if(isLoading){

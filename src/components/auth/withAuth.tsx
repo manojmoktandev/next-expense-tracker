@@ -15,7 +15,6 @@ export function withAuth<T>(Component: React.ComponentType<T>,roles:string[]){
             const token =  Cookies.get('access_token')
             const {valid,role} = ParseToken(token ?? '')
             if(!valid || !roles.includes(role ?? '')){
-                console.log(valid,role);
                 Cookies.remove('token')
                 localStorage.removeItem('user')
                 toast.error('Session expired. Try login again.')

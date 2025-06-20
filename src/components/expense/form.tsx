@@ -27,7 +27,6 @@ const ExpenseForm = ()=>{
     const {mutate,isPending} = useMutation({
         mutationFn:createExpenses,
         onSuccess:(data) =>{
-            console.log('mutuate data', data)
             toast.success(data?.message ?? 'Expenses  Added.')
             router.back()
             queryClient.invalidateQueries({queryKey:['get-all-user-expenses']})
@@ -47,14 +46,12 @@ const ExpenseForm = ()=>{
         if(description){
             formData.append('description',description);
         }
-        console.log('form category',category)
         
         if(receipts &&  receipts?.length > 0 && Array.isArray(receipts)){
             receipts.forEach((file) =>{
                 formData.append('receipts',file)
             })
         }
-        console.log(formData);
         mutate(formData)
     }
 

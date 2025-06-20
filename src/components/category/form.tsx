@@ -65,7 +65,6 @@ const CategoryForm:React.FC<IProps> = ({category})=>{
     useEffect(()=>{
         if(category){
             const categoryData = getCategoryUpdateData(category);
-            console.log('use data',categoryData)
         }
     },[category])
 
@@ -79,7 +78,6 @@ const CategoryForm:React.FC<IProps> = ({category})=>{
         }
             
     }
-    console.log(register);
     return(
          <div className="max-w-2xl mt-2 mx-auto p-6 bg-white rounded-lg shadow-md  tracking-wide">
             {/* <h2 className="text-2xl font-bold text-gray-800 mb-6"></h2> */}

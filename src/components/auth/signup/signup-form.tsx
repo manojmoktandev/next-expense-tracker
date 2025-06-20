@@ -24,7 +24,7 @@ const SignUpForm = () => {
         mutationFn:registerUser,
         onSuccess:(response)=>{
             toast.success(response.mesage??'User Registered Succesfully')
-            router.replace('auth/login')
+            router.replace('/auth/login')
             reset()
         },
         onError:(error)=>{
@@ -52,7 +52,7 @@ const SignUpForm = () => {
                     </div>
                     <div>
                         <label className='flex text-sm font-medium text-gray-700 mb-1'> Username <LuAsterisk className='text-xxs text-red-500' /></label>
-                        <input type='text'{...register('username')} id="fullname" placeholder='Enter your Full Name' className={`w-full px-4 py-2 border-gray-300  rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none placeholder:text-sm text-lg border ${errors?.username ? "border-red-500 focus:outline-red-500" : "focus:outline-blue-400"}`}></input>
+                        <input type='text'{...register('username')} id="username" placeholder='Enter your Full Name' className={`w-full px-4 py-2 border-gray-300  rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none placeholder:text-sm text-lg border ${errors?.username ? "border-red-500 focus:outline-red-500" : "focus:outline-blue-400"}`}></input>
                         {errors?.username && <p className='text-sm text-red-500'>{errors?.username.message}</p>}
                     </div>
                     <div>
