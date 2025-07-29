@@ -8,6 +8,8 @@ interface ICategoryOption {
 interface IImage{
     path:string,
     public_id:string
+    original_name: string; // Original filename
+     _id: string;         // Unique identifier for the receipt
 }
 export interface IExpense{
     title:string;
@@ -24,7 +26,7 @@ export interface IExpenseResponse{
     amount:number,
     date:string,
     category:ICategoryResponse,
-    receipts?:IImage,
+    receipts?:IImage[],
     description?:string,
     createdAt:string,
     updatedAt:string

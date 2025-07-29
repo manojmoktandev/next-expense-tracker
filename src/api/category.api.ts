@@ -50,6 +50,7 @@ export const getCategoryById =  async(id:string)=>{
 export const updateCategory =  async(data:ICategory,id:string)=>{
     try{
         const response =  await apiInstance.put(`/category/update/${id}`,data);
+        console.log('response update category',response)
         return response.data;
     }
     catch(error:any){

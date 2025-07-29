@@ -51,7 +51,7 @@ const  Table:React.FC<IProps> = ({data=[],columns})=> {
                 </tbody>
                 {data.length<1 && <tfoot>
                     <tr  className="hover:bg-gray-50">
-                        <td colSpan={columns.length} className="px-6 py-4 text-center whitespace-nowrap text-right text-sm font-medium">  No Records Found
+                        <td colSpan={columns.length} className="px-6 py-4  whitespace-nowrap text-right text-sm font-medium">  No Records Found
                         </td>
                     </tr>
                     </tfoot>

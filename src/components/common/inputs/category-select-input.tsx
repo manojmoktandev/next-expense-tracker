@@ -12,9 +12,10 @@ interface IProps {
 	required?: boolean;
 	error?:string
     label:string;
+    defaultValue?:string;
 }
 
-const SelectCategory: React.FC<IProps> = ({error, required = false,label, control }) => {
+const SelectCategory: React.FC<IProps> = ({error, required = false,label, defaultValue,control }) => {
 	const { data } = useQuery({
 		queryFn: getAllCategoryByUser,
 		queryKey: ["get-all-user-category"],
@@ -24,6 +25,9 @@ const SelectCategory: React.FC<IProps> = ({error, required = false,label, contro
 		label: category.name,
 		value: category.id,
 	}));
+
+    const setDefaultOption = {label:'Clothing',value:'6859b26c5b2b704b2c48ae57'}
+
 
 	return (
 		<div>
@@ -42,6 +46,7 @@ const SelectCategory: React.FC<IProps> = ({error, required = false,label, contro
 						placeholder={"Select category"}
 						onChange={onChange}
 						options={options}
+                        defaultValue={defaultValue}
 						error={error}
 					/>
 				)}

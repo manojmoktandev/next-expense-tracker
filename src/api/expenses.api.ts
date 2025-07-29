@@ -12,11 +12,32 @@ export const getAllExpenseByUser = async()=>{
     }
 }
 
+export const getExpenseById = async(id:string)=>{
+    try{
+        const response =  await apiInstance.get(`/expense/${id}`);
+        console.log('response from get expense by id',response);
+        return response.data;
+    }
+    catch(error:any){
+        throw  error.response.data
+    }
+}
+
 export const createExpenses =  async(data:any)=>{
     try{
         const response  =  await apiInstance.post(`/expense/create`,data);
         return response.data;
 
+    }
+    catch(error:any){
+        throw  error.response.data
+    }
+}
+
+export const updateExpense =  async(data:any,id:string)=>{
+    try{
+        const response =  await apiInstance.put(`/expense/update/${id}`,data);
+        return response.data;
     }
     catch(error:any){
         throw  error.response.data

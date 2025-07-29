@@ -16,8 +16,10 @@ import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { formatCurrency } from "@/utils/currencyFormatter"
 import Loader from "../common/loader"
+import { useRouter } from "next/navigation"
 
 const ExpensesList = () => {
+    const router =  useRouter();
     const columnHelper = createColumnHelper<any>()
     const queryClient = useQueryClient()
     const { data, isLoading, error } = useQuery({
@@ -53,8 +55,14 @@ const ExpensesList = () => {
         });
     }, [mutate])
 
-    const onEdit = useCallback(() => {
-    }, [])
+    const onEdit = useCallback((id:string) => {
+        router.push(`/expenses/update/${id}`);
+    }, [router])
+
+    const onView = useCallback((id:string) =>{
+        router.push(`/expenses/view/${id}`)
+    },[router])
+
 
     if(isLoading){
         <Loader/>
@@ -97,7 +105,7 @@ const ExpensesList = () => {
         }),
         columnHelper.accessor('actions', {
             header: () => <span>Actions</span>,
-            cell: (info) => <ActionButtons onDelete={() => onDelete(info.row.original.id)} onEdit={onEdit} />
+            cell: (info) => <ActionButtons onDelete={() => onDelete(info.row.original.id)} onEdit={()=>onEdit(info.row.original.id)} onView={()=>onView(info.row.original.id)}/>
         }),
     ]
 

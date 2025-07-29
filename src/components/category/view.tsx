@@ -3,6 +3,7 @@ import { getCategoryById } from '@/api/category.api';
 import { formatDate } from '@/utils/dateFormatter';
 import { useQuery } from '@tanstack/react-query';
 import React from 'react'
+import Loader from '../common/loader';
 
 type Props = {
     id:string
@@ -17,9 +18,7 @@ const ViewCategoryDetail = (props:Props) => {
     })
 
     if (isLoading) {
-        return (<div className='w-full h-full flex justify-center items-center'>
-            <p>Loading....</p>
-        </div>)
+        <Loader/>
     }
     const {name, description,user, createdAt, updatedAt} = data?.data 
 

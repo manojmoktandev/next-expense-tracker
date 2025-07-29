@@ -17,7 +17,7 @@ const ImageUploaderController:React.FC<IProps> = ({required=false, label,control
   return (
 <div>
     <div className='flex  gap-1/2 mb-1'>
-      <label className=' text-lg  '>{label}</label>
+      <label className=' text-lg  '>{label} </label>
       {required && <LuAsterisk size={18} className='text-red-500'/>}
     </div>
     <Controller

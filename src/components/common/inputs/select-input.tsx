@@ -1,15 +1,38 @@
-import React from 'react';
-import Select from 'react-select';
+import React, { useEffect, useState } from 'react';
+import Select,{SingleValue} from 'react-select';
 
-
-interface IProps {
-    options: { label:string; value: string }[];
-    onChange:()=>void;
-    placeholder:string;
-    error?:string;
+interface IOption{
+    label:string;
+    value:string;
 }
 
-const SelectInput:React.FC<IProps> = ({error,options,onChange,placeholder})=>{
+interface IProps {
+    options: IOption[];
+    onChange:(value:string)=>void;
+    placeholder:string;
+    error?:string;
+    defaultValue?:string;
+}
+
+const SelectInput:React.FC<IProps> = ({error,options=[],onChange,defaultValue,placeholder})=>{
+    console.log('select default value',defaultValue)
+    // state to track the selected value
+    const [selectedValue,setSelectedValue] =  useState<string | undefined>(defaultValue);
+    const selectedOption =  options.find(option=>option.value==selectedValue) || null;
+    
+    //sync with parent's default changes
+    useEffect(()=>{
+        setSelectedValue(defaultValue)
+    },[defaultValue])
+
+    const handleChange = (selectedOption:SingleValue<IOption>)=>{
+        const newValue =  selectedOption?.value || '';
+        console.log('new value', newValue);
+        setSelectedValue(newValue);
+        onChange(newValue);
+    }
+   
+
     return (
 		<div>
 			<Select
@@ -23,8 +46,10 @@ const SelectInput:React.FC<IProps> = ({error,options,onChange,placeholder})=>{
                         borderColor:error ?  '#FB2C36' :'#D1D5DC'
                     })
 				}}
-				onChange={onChange}
+				onChange={handleChange}
 				options={options}
+                value = {selectedOption}
+                
 				placeholder={placeholder ?? "Select"}
 			/>
 			{error && <p className="text-xs text-red-500 mt-0">{error}</p>}
